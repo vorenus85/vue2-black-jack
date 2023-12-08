@@ -1,5 +1,5 @@
 <template lang="pug">
-BJButton.hit-btn(@click="$emit('hit')") Hit
+BJButton.hit-btn(@click.native="$emit('hit')") Hit
 </template>
 <script>
 import BJButton from "./BJButton.vue";

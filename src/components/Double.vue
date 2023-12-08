@@ -1,5 +1,5 @@
 <template lang="pug">
-BJButton.double-btn(@click="$emit('double')") Double
+BJButton.double-btn(@click.native="$emit('double')") Double
 </template>
 <script>
 import BJButton from "./BJButton.vue";

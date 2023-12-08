@@ -1,5 +1,5 @@
 <template lang="pug">
-BJButton.split-btn(@click="$emit('split')") Split
+BJButton.split-btn(@click.native="$emit('split')") Split
 </template>
 <script>
 import BJButton from "./BJButton.vue";
