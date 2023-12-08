@@ -1,28 +1,36 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+<template lang="pug">
+main.game-area
+  DealerSide
+  PlayerSide
+  ActionRow
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import DealerSide from "./components/DealerSide.vue";
+import PlayerSide from "./components/PlayerSide.vue";
+import ActionRow from "./components/ActionRow.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    ActionRow,
+    PlayerSide,
+    DealerSide,
   },
 };
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="sass">
+.game-area
+  display: flex
+  flex-direction: column
+  height: 100vh
+  align-items: center
+  justify-content: center
+  font-family: Avenir, Helvetica, Arial, sans-serif
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  text-align: center
+  color: #2c3e50
+  background: #28734d
+  padding: 2rem
 </style>
