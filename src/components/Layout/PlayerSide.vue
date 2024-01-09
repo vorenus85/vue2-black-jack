@@ -1,11 +1,11 @@
 <template lang="pug">
 section.player-side
   .row.align-items-center.justify-content-center
-    Card
-    Card
+    Card(:card="`C10`")
+    Card(:card="`HA`")
 </template>
 <script>
-import Card from "./Card.vue";
+import Card from "../Card.vue";
 
 export default {
   name: "PlayerSide",

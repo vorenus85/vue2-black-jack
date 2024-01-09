@@ -4,6 +4,6 @@ button.btn.btn-light
 </template>
 <script>
 export default {
-  name: "BJButton",
+  name: "BlackJackButton",
 };
 </script>

@@ -7,10 +7,10 @@ section.action-row
     Stand.col-auto.mx-1(@stand="handleStand")
 </template>
 <script>
-import Split from "./Split.vue";
-import Double from "./Double.vue";
-import Hit from "./Hit.vue";
-import Stand from "./Stand.vue";
+import Split from "../Buttons/Split.vue";
+import Double from "../Buttons/Double.vue";
+import Hit from "../Buttons/Hit.vue";
+import Stand from "../Buttons/Stand.vue";
 
 export default {
   name: "ActionRow",

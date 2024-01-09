@@ -1,12 +1,21 @@
-import { shallowMount } from '@vue/test-utils';
-import Stand from '@/components/Stand.vue';
+import { shallowMount } from "@vue/test-utils";
+import Stand from "@/components/Buttons/Stand.vue";
 
-describe('Stand button component', () => {
+describe("Stand button component", () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallowMount(Stand);
+  });
+
   it('emits "stand" event on button click', async () => {
-    const wrapper = shallowMount(Stand);
-    await wrapper.find('.stand-btn').trigger('click');
+    // Arrange
+    await wrapper.find(".stand-btn").trigger("click");
+
+    // Act
     await wrapper.vm.$nextTick();
 
+    // Assert
     expect(wrapper.emitted().stand).toBeTruthy();
   });
 });

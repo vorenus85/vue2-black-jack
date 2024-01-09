@@ -6,9 +6,9 @@ main.game-area
 </template>
 
 <script>
-import DealerSide from "./components/DealerSide.vue";
-import PlayerSide from "./components/PlayerSide.vue";
-import ActionRow from "./components/ActionRow.vue";
+import DealerSide from "./components/Layout/DealerSide.vue";
+import PlayerSide from "./components/Layout/PlayerSide.vue";
+import ActionRow from "./components/Layout/ActionRow.vue";
 
 export default {
   name: "App",
@@ -16,6 +16,9 @@ export default {
     ActionRow,
     PlayerSide,
     DealerSide,
+  },
+  methods: {
+    shuffleDeck() {},
   },
 };
 </script>

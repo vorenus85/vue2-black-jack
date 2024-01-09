@@ -1,12 +1,21 @@
-import { shallowMount } from '@vue/test-utils';
-import Hit from '@/components/Hit.vue';
+import { shallowMount } from "@vue/test-utils";
+import Hit from "@/components/Buttons/Hit.vue";
 
-describe('Hit button component', () => {
+describe("Hit button component", () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallowMount(Hit);
+  });
+
   it('emits "hit" event on button click', async () => {
-    const wrapper = shallowMount(Hit);
-    await wrapper.find('.hit-btn').trigger('click');
+    // Arrange
+    await wrapper.find(".hit-btn").trigger("click");
+
+    // Act
     await wrapper.vm.$nextTick();
 
+    // Assert
     expect(wrapper.emitted().hit).toBeTruthy();
   });
 });

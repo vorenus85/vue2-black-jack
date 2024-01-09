@@ -1,12 +1,21 @@
-import { shallowMount } from '@vue/test-utils';
-import Double from '@/components/Double.vue';
+import { shallowMount } from "@vue/test-utils";
+import Double from "@/components/Buttons/Double.vue";
 
-describe('Double button component', () => {
+describe("Double button component", () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallowMount(Double);
+  });
+
   it('emits "double" event on button click', async () => {
-    const wrapper = shallowMount(Double);
-    await wrapper.find('.double-btn').trigger('click');
+    // Arrange
+    await wrapper.find(".double-btn").trigger("click");
+
+    // Act
     await wrapper.vm.$nextTick();
 
+    // Arrange
     expect(wrapper.emitted().double).toBeTruthy();
   });
 });
