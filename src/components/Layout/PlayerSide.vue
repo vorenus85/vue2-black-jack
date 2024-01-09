@@ -21,6 +21,18 @@ export default {
       return this.calcDeckValue(this.actualPlayerDeck);
     },
   },
+  watch: {
+    deckValue(value) {
+      this.$store.dispatch("setPlayerDeckSum", value);
+      if (value === 21 && this.actualPlayerDeck.length === 2) {
+        this.$store.dispatch("changeGameMode", "dealer");
+      }
+
+      if (value >= 21) {
+        this.$store.dispatch("changeGameMode", "dealer");
+      }
+    },
+  },
 };
 </script>
 <style lang="sass">

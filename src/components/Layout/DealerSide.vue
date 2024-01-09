@@ -17,12 +17,37 @@ export default {
   mixins: [mixins],
   components: { Card, DeckValue },
   computed: {
-    ...mapGetters(["actualDealerDeck"]),
+    ...mapGetters(["actualDealerDeck", "actualGameMode"]),
     isFirstCardDowned() {
       return this.actualDealerDeck.length === 2;
     },
     deckValue() {
       return this.calcDeckValue(this.actualDealerDeck);
+    },
+  },
+  watch: {
+    deckValue(value) {
+      this.$store.dispatch("setDealerDeckSum", value);
+    },
+    "$store.state.gameMode": function (value) {
+      if (value === "dealer") {
+        this.autoPullForDealer();
+      }
+    },
+    "$store.state.dealerDeckSum": function (value) {
+      if (value >= 18) {
+        this.$store.dispatch("changeGameMode", "stopGame");
+      }
+    },
+  },
+  methods: {
+    autoPullForDealer() {
+      if (this.actualGameMode === "dealer") {
+        this.$store.dispatch("pullCardToDealer");
+        setTimeout(() => {
+          this.autoPullForDealer();
+        }, 1000);
+      }
     },
   },
 };

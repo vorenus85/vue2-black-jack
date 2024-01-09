@@ -9,6 +9,9 @@ export default new Vuex.Store({
     deck: [],
     dealerDeck: [],
     playerDeck: [],
+    dealerDeckSum: 0,
+    playerDeckSum: 0,
+    gameMode: "player",
   },
   getters: {
     actualDeck(state) {
@@ -19,6 +22,15 @@ export default new Vuex.Store({
     },
     actualPlayerDeck(state) {
       return state.playerDeck;
+    },
+    actualGameMode(state) {
+      return state.gameMode;
+    },
+    actualDealerDeckSum(state) {
+      return state.dealerDeckSum;
+    },
+    actualPlayerDeckSum(state) {
+      return state.playerDeckSum;
     },
   },
   mutations: {
@@ -35,6 +47,15 @@ export default new Vuex.Store({
       const lastCard = state.deck.splice(-1);
       state.playerDeck.push(lastCard[0]);
     },
+    changeGameMode(state, payload) {
+      state.gameMode = payload;
+    },
+    setDealerDeckSum(state, payload) {
+      state.dealerDeckSum = payload;
+    },
+    setPlayerDeckSum(state, payload) {
+      state.playerDeckSum = payload;
+    },
   },
   actions: {
     createDeck(context) {
@@ -45,6 +66,15 @@ export default new Vuex.Store({
     },
     pullCardToPlayer(context) {
       context.commit("pullCardToPlayer");
+    },
+    changeGameMode(context, payload) {
+      context.commit("changeGameMode", payload);
+    },
+    setDealerDeckSum(context, payload) {
+      context.commit("setDealerDeckSum", payload);
+    },
+    setPlayerDeckSum(context, payload) {
+      context.commit("setPlayerDeckSum", payload);
     },
   },
   modules: {},
