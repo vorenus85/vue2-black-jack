@@ -1,11 +1,11 @@
 <template lang="pug">
 .card.m-2
   .back(v-if="back")
-  .front(v-else :class="[symbolName, cardColor]")
+  .front(v-else :class="[symbolClass, color]")
     .card-value 
       span {{ cardValue }}
     .card-symbol
-      span(v-html="symbol")
+      span(v-html="symbolHTML")
 </template>
 <script>
 export default {
@@ -20,16 +20,10 @@ export default {
       default: "",
     },
   },
-  data: function () {
-    return {
-      symbol: "",
-      symbolName: "",
-    };
-  },
   computed: {
-    cardColor() {
-      const symbol = this.cardSymbol;
-      let color = "";
+    color() {
+      const symbol = this.getSymbol(this.card);
+      let color;
       if (symbol === "H" || symbol === "D") {
         color = "red";
       } else {
@@ -37,41 +31,60 @@ export default {
       }
       return color;
     },
-    cardSymbol() {
-      const card = this.card;
+    cardValue() {
+      return this.getCardValue(this.card);
+    },
+    symbolHTML() {
+      return this.getSymbolHTML(this.card);
+    },
+    symbolClass() {
+      return this.getSymbolClass(this.card);
+    },
+  },
+  methods: {
+    getSymbol(card) {
       const splittedCard = card.split("");
       return splittedCard[0];
     },
-    cardValue() {
-      const card = this.card;
+    getCardValue(card) {
       const splittedCard = card.split("");
       return card.length > 2
         ? splittedCard[1] + splittedCard[2]
         : splittedCard[1];
     },
-  },
-  mounted() {
-    this.getSymbolName();
-  },
-  methods: {
-    getSymbolName() {
-      const symbol = this.cardSymbol;
+    getSymbolHTML(card) {
+      const symbol = this.getSymbol(card);
+      let symbolHTML;
       if (symbol === "H") {
-        this.symbol = "&hearts;";
-        this.symbolName = "hearts";
+        symbolHTML = "&hearts;";
       }
       if (symbol === "S") {
-        this.symbol = "&spades;";
-        this.symbolName = "spades";
+        symbolHTML = "&spades;";
       }
       if (symbol === "C") {
-        this.symbol = "&clubs;";
-        this.symbolName = "clubs";
+        symbolHTML = "&clubs;";
       }
       if (symbol === "D") {
-        this.symbol = "&diams;";
-        this.symbolName = "diamonds";
+        symbolHTML = "&diams;";
       }
+      return symbolHTML;
+    },
+    getSymbolClass(card) {
+      const symbol = this.getSymbol(card);
+      let symbolClass;
+      if (symbol === "H") {
+        symbolClass = "hearts";
+      }
+      if (symbol === "S") {
+        symbolClass = "spades";
+      }
+      if (symbol === "C") {
+        symbolClass = "clubs";
+      }
+      if (symbol === "D") {
+        symbolClass = "diamonds";
+      }
+      return symbolClass;
     },
   },
 };

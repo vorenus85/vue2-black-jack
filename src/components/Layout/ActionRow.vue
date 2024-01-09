@@ -3,8 +3,8 @@ section.action-row
   .row.align-items-center.justify-content-center
     Split.col-auto.mx-1(@split="handleSplit")
     Double.col-auto.mx-1(@double="handleDouble")
-    Hit.col-auto.mx-1(@hit="handleHit")
     Stand.col-auto.mx-1(@stand="handleStand")
+    Hit.col-auto.mx-1(@hit="handleHit")
 </template>
 <script>
 import Split from "../Buttons/Split.vue";
