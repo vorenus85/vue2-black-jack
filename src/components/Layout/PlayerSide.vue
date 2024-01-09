@@ -1,20 +1,29 @@
 <template lang="pug">
-section.player-side
+section.player-side.my-3
+  DeckValue(:deckValue="deckValue")
   .row.align-items-center.justify-content-center
-    Card(:card="`C10`")
-    Card(:card="`HA`")
+    template(v-for="card in actualPlayerDeck")
+      Card(:card="card" :key="card")
 </template>
 <script>
+import { mapGetters } from "vuex";
 import Card from "../Card.vue";
+import mixins from "@/mixins";
+import DeckValue from "../DeckValue.vue";
 
 export default {
   name: "PlayerSide",
-  components: { Card },
+  mixins: [mixins],
+  components: { Card, DeckValue },
+  computed: {
+    ...mapGetters(["actualPlayerDeck"]),
+    deckValue() {
+      return this.calcDeckValue(this.actualPlayerDeck);
+    },
+  },
 };
 </script>
 <style lang="sass">
 .player-side
-  display: flex
-  align-items: center
-  justify-content: center
+  position: relative
 </style>

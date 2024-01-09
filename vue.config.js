@@ -5,7 +5,7 @@ module.exports = defineConfig({
   pages: {
     index: {
       entry: "src/main.js",
-      title: "Awesome Vue Black Jack",
+      title: "Black Jack",
     },
   },
   chainWebpack: (config) => {

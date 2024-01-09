@@ -1,4 +1,4 @@
-import { symbols, values, deck, shuffledDeck } from "@/utils/cardLogic";
+import { symbols, values, deck } from "@/utils/cardLogic";
 
 describe("Card logic", () => {
   it("symbols length is 4", () => {

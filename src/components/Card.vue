@@ -1,5 +1,5 @@
 <template lang="pug">
-.card.m-2
+.card.m-2.general-box-shadow.slide-down-from-up
   .back(v-if="back")
   .front(v-else :class="[symbolClass, color]")
     .card-value 
@@ -8,8 +8,11 @@
       span(v-html="symbolHTML")
 </template>
 <script>
+import mixins from "@/mixins";
+
 export default {
   name: "Card",
+  mixins: [mixins],
   props: {
     back: {
       type: Boolean,
@@ -45,12 +48,6 @@ export default {
     getSymbol(card) {
       const splittedCard = card.split("");
       return splittedCard[0];
-    },
-    getCardValue(card) {
-      const splittedCard = card.split("");
-      return card.length > 2
-        ? splittedCard[1] + splittedCard[2]
-        : splittedCard[1];
     },
     getSymbolHTML(card) {
       const symbol = this.getSymbol(card);
@@ -121,4 +118,13 @@ export default {
     color: #f63001
   &.black
     color: #171717
+
+@keyframes slide-down-from-up
+  0%
+    transform: translateY(-300%)
+  100%
+    transform: translateY(0)
+
+.slide-down-from-up
+  animation: slide-down-from-up .5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both
 </style>

@@ -40,6 +40,4 @@ const shuffle = (array) => {
   return array;
 };
 
-const shuffledDeck = shuffle(deck);
-
-module.exports = { symbols, values, deck, shuffledDeck };
+module.exports = { symbols, values, deck, shuffle };
