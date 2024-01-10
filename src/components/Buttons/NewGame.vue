@@ -1,5 +1,5 @@
 <template lang="pug">
-BlackJackButton.double-btn(@click.native="$emit('newGame')") New Game
+BlackJackButton.new-game-btn(@click.native="$emit('newGame')") New Game
 </template>
 <script>
 import BlackJackButton from "./BlackJackButton.vue";
