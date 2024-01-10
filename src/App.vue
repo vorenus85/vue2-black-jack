@@ -35,7 +35,7 @@ html, body
   font-family: Roboto, sans-serif
 
 .general-box-shadow
-  box-shadow: 0 4px 0 0 rgba(0,0,0,.25)
+  box-shadow: 0 4px 0 0 rgba(0,0,0,.5)
 
 .game-area
   display: flex

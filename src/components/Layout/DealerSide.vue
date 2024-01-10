@@ -1,10 +1,9 @@
 <template lang="pug">
 section.dealer-side.my-3
-  DeckValue(:deckValue="deckValue")
+  DeckValue(:deckValue="deckValue" v-if="actualDealerDeck.length > 2")
   .row.align-items-center.justify-content-center
     template(v-for="(card, index) in actualDealerDeck")
-      // Card(:card="card" :key="card" :back="index === 0 && isFirstCardDowned ? true : false")
-      Card(:card="card" :key="card")
+      Card(:card="card" :key="card" :back="index === 0 && isFirstCardDowned ? true : false")
 </template>
 <script>
 import { mapGetters } from "vuex";
@@ -31,7 +30,9 @@ export default {
     },
     "$store.state.gameMode": function (value) {
       if (value === "dealer") {
-        this.autoPullForDealer();
+        setTimeout(() => {
+          this.autoPullForDealer();
+        }, 1000);
       }
     },
     "$store.state.dealerDeckSum": function (value) {
