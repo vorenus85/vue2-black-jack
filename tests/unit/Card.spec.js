@@ -34,7 +34,7 @@ describe("Card component", () => {
     expect(back.exists()).toBe(true);
   });
 
-  describe("check card symbol, value and color", () => {
+  describe("check card symbol, value and color", (done) => {
     const cases = [
       ["C10", ".clubs", ".black", "10"],
       ["H10", "hearts", "red", "10"],
@@ -52,6 +52,7 @@ describe("Card component", () => {
           expect(wrapper.find(`${cardSymbol}`).exists()).toBe(true);
           expect(wrapper.find(`${cardColor}`).exists()).toBe(true);
           expect(value.text()).toBe(cardValue);
+          done();
         });
       }
     );

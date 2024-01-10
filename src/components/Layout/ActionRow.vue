@@ -1,12 +1,12 @@
 <template lang="pug">
 section.action-row
   .row.align-items-center.justify-content-center()
-    Split.col-auto.mx-1(@split="handleSplit" :disabled="actionsDisabled")
-    Double.col-auto.mx-1(@double="handleDouble" :disabled="actionsDisabled")
-    Stand.col-auto.mx-1(@stand="handleStand" :disabled="actionsDisabled")
-    Hit.col-auto.mx-1(@hit="handleHit" :disabled="actionsDisabled")
+    Split.col-auto.mx-1(ref="split-btn" @split="handleSplit" :disabled="actionsDisabled")
+    Double.col-auto.mx-1(ref="double-btn" @double="handleDouble" :disabled="actionsDisabled")
+    Stand.col-auto.mx-1(ref="stand-btn" @stand="handleStand" :disabled="actionsDisabled")
+    Hit.col-auto.mx-1(ref="hit-btn" @hit="handleHit" :disabled="actionsDisabled")
   .row.align-items-center.justify-content-center.mt-3
-    NewGame.col-auto.mx-1(@newGame="handleNewGame" :disabled="actualGameMode === 'dealer' ? true : false")
+    NewGame.col-auto.mx-1(ref="new-game-btn" @newGame="handleNewGame" :disabled="actualGameMode === 'dealer' ? true : false")
 </template>
 <script>
 import Split from "../Buttons/Split.vue";
