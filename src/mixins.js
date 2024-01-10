@@ -1,5 +1,26 @@
 export default {
   methods: {
+    initNewGame() {
+      this.$store.dispatch("changeGameMode", "player");
+      this.$store.dispatch("emptyDealerDeck");
+      this.$store.dispatch("setDealerDeckSum", 0);
+      this.$store.dispatch("emptyPlayerDeck");
+      this.$store.dispatch("setPlayerDeckSum", 0);
+      this.$store.dispatch("createDeck");
+
+      setTimeout(() => {
+        this.$store.dispatch("pullCardToDealer");
+      }, 125);
+      setTimeout(() => {
+        this.$store.dispatch("pullCardToPlayer");
+      }, 250);
+      setTimeout(() => {
+        this.$store.dispatch("pullCardToDealer");
+      }, 375);
+      setTimeout(() => {
+        this.$store.dispatch("pullCardToPlayer");
+      }, 500);
+    },
     getCardValue(card) {
       const splittedCard = card.split("");
       return card.length > 2

@@ -56,6 +56,12 @@ export default new Vuex.Store({
     setPlayerDeckSum(state, payload) {
       state.playerDeckSum = payload;
     },
+    emptyDealerDeck(state) {
+      state.dealerDeck = [];
+    },
+    emptyPlayerDeck(state) {
+      state.playerDeck = [];
+    },
   },
   actions: {
     createDeck(context) {
@@ -75,6 +81,12 @@ export default new Vuex.Store({
     },
     setPlayerDeckSum(context, payload) {
       context.commit("setPlayerDeckSum", payload);
+    },
+    emptyDealerDeck(context) {
+      context.commit("emptyDealerDeck");
+    },
+    emptyPlayerDeck(context) {
+      context.commit("emptyPlayerDeck");
     },
   },
   modules: {},

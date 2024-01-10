@@ -10,9 +10,11 @@ import DealerSide from "./components/Layout/DealerSide.vue";
 import PlayerSide from "./components/Layout/PlayerSide.vue";
 import ActionRow from "./components/Layout/ActionRow.vue";
 import { mapGetters } from "vuex";
+import mixins from "./mixins";
 
 export default {
   name: "App",
+  mixins: [mixins],
   components: {
     ActionRow,
     PlayerSide,
@@ -22,27 +24,8 @@ export default {
     ...mapGetters(["actualDeck"]),
   },
   mounted() {
-    this.$store.dispatch("createDeck");
-    setTimeout(() => {
-      this.$store.dispatch("pullCardToDealer");
-    }, 125);
-    setTimeout(() => {
-      this.$store.dispatch("pullCardToPlayer");
-    }, 250);
-    setTimeout(() => {
-      this.$store.dispatch("pullCardToDealer");
-    }, 375);
-    setTimeout(() => {
-      this.$store.dispatch("pullCardToPlayer");
-    }, 500);
-    /*
-    this.$store.dispatch("pullCardToDealer");
-    this.$store.dispatch("pullCardToPlayer");
-    this.$store.dispatch("pullCardToDealer");
-    this.$store.dispatch("pullCardToPlayer");
-    */
+    this.initNewGame();
   },
-  methods: {},
 };
 </script>
 <style lang="sass">

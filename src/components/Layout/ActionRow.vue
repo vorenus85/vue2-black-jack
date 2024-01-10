@@ -5,26 +5,32 @@ section.action-row
     Double.col-auto.mx-1(@double="handleDouble" :disabled="actionsDisabled")
     Stand.col-auto.mx-1(@stand="handleStand" :disabled="actionsDisabled")
     Hit.col-auto.mx-1(@hit="handleHit" :disabled="actionsDisabled")
+  .row.align-items-center.justify-content-center.mt-3
+    NewGame.col-auto.mx-1(@newGame="handleNewGame" :disabled="actualGameMode === 'dealer' ? true : false")
 </template>
 <script>
 import Split from "../Buttons/Split.vue";
 import Double from "../Buttons/Double.vue";
 import Hit from "../Buttons/Hit.vue";
 import Stand from "../Buttons/Stand.vue";
+import NewGame from "../Buttons/NewGame.vue";
 import { mapGetters } from "vuex";
+import mixins from "@/mixins";
 
 export default {
   name: "ActionRow",
+  mixins: [mixins],
   components: {
     Split,
     Double,
     Hit,
     Stand,
+    NewGame,
   },
   computed: {
     ...mapGetters(["actualGameMode"]),
     actionsDisabled() {
-      const result = this.actualGameMode === "player" ? false : true;
+      const result = this.actualGameMode !== "player";
       return result;
     },
   },
@@ -40,6 +46,9 @@ export default {
     },
     handleStand() {
       this.$store.dispatch("changeGameMode", "dealer");
+    },
+    handleNewGame() {
+      this.initNewGame();
     },
   },
 };
