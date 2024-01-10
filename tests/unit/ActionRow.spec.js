@@ -8,11 +8,11 @@ localVue.use(Vuex);
 const actualGameModeMock = jest.fn();
 actualGameModeMock.mockReturnValue("player");
 
-const initNewGameMock = jest.fn();
-
-localVue.use(initNewGameMock);
-
 const store = new Vuex.Store({
+  actions: {
+    pullCardToPlayer: jest.fn(),
+    changeGameMode: jest.fn(),
+  },
   getters: {
     actualGameMode: actualGameModeMock,
   },
@@ -46,9 +46,8 @@ describe("ActionRow component", () => {
     const btn = wrapper.findComponent({ ref: "hit-btn" });
     const storeDispatch = jest.spyOn(wrapper.vm.$store, "dispatch");
     await btn.trigger("click");
-    wrapper.vm.$nextTick((done) => {
+    wrapper.vm.$nextTick(() => {
       expect(storeDispatch).toHaveBeenCalledWith("pullCardToPlayer");
-      done();
     });
   });
 
@@ -56,9 +55,8 @@ describe("ActionRow component", () => {
     const btn = wrapper.findComponent({ ref: "stand-btn" });
     const storeDispatch = jest.spyOn(wrapper.vm.$store, "dispatch");
     await btn.trigger("click");
-    wrapper.vm.$nextTick((done) => {
+    wrapper.vm.$nextTick(() => {
       expect(storeDispatch).toHaveBeenCalledWith("changeGameMode", "dealer");
-      done();
     });
   });
 });
