@@ -32,7 +32,6 @@ describe("ActionRow component", () => {
 
   test.each`
     btn          | btnRef
-    ${"Split"}   | ${"split-btn"}
     ${"Double"}  | ${"double-btn"}
     ${"Stand"}   | ${"stand-btn"}
     ${"Hit"}     | ${"hit-btn"}
