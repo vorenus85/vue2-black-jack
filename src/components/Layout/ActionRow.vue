@@ -1,7 +1,6 @@
 <template lang="pug">
 section.action-row
   .row.align-items-center.justify-content-center()
-    Split.col-auto.mx-1(ref="split-btn" @split="handleSplit" :disabled="actionsDisabled")
     Double.col-auto.mx-1(ref="double-btn" @double="handleDouble" :disabled="actionsDisabled")
     Stand.col-auto.mx-1(ref="stand-btn" @stand="handleStand" :disabled="actionsDisabled")
     Hit.col-auto.mx-1(ref="hit-btn" @hit="handleHit" :disabled="actionsDisabled")
@@ -9,7 +8,6 @@ section.action-row
     NewGame.col-auto.mx-1(ref="new-game-btn" @newGame="handleNewGame" :disabled="actualGameMode === 'dealer' ? true : false")
 </template>
 <script>
-import Split from "../Buttons/Split.vue";
 import Double from "../Buttons/Double.vue";
 import Hit from "../Buttons/Hit.vue";
 import Stand from "../Buttons/Stand.vue";
@@ -24,7 +22,6 @@ export default {
   name: "ActionRow",
   mixins: [mixins],
   components: {
-    Split,
     Double,
     Hit,
     Stand,
