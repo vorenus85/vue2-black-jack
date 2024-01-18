@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { deck, shuffle } from "@/utils/cardLogic";
 
 Vue.use(Vuex);
 
@@ -14,30 +13,28 @@ export default new Vuex.Store({
     gameMode: "player",
   },
   getters: {
-    actualDeck(state) {
+    actualDeck: (state) => {
       return state.deck;
     },
-    actualDealerDeck(state) {
+    actualDealerDeck: (state) => {
       return state.dealerDeck;
     },
-    actualPlayerDeck(state) {
+    actualPlayerDeck: (state) => {
       return state.playerDeck;
     },
-    actualGameMode(state) {
+    actualGameMode: (state) => {
       return state.gameMode;
     },
-    actualDealerDeckSum(state) {
+    actualDealerDeckSum: (state) => {
       return state.dealerDeckSum;
     },
-    actualPlayerDeckSum(state) {
+    actualPlayerDeckSum: (state) => {
       return state.playerDeckSum;
     },
   },
   mutations: {
-    createDeck(state) {
-      const starterDeck = deck();
-      const shuffledDeck = shuffle(starterDeck);
-      state.deck = shuffledDeck;
+    createDeck(state, payload) {
+      state.deck = payload;
     },
     pullCardToDealer(state) {
       const lastCard = state.deck.splice(-1);
@@ -64,8 +61,8 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    createDeck(context) {
-      context.commit("createDeck");
+    createDeck(context, payload) {
+      context.commit("createDeck", payload);
     },
     pullCardToDealer(context) {
       context.commit("pullCardToDealer");

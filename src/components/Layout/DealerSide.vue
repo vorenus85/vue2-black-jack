@@ -30,13 +30,18 @@ export default {
     },
     "$store.state.gameMode": function (value) {
       if (value === "dealer") {
+        if (this.actualDealerDeckSum >= 18) {
+          this.$store.dispatch("changeGameMode", "stopGame");
+          return;
+        }
+
         setTimeout(() => {
           this.autoPullForDealer();
         }, 1000);
       }
     },
     "$store.state.dealerDeckSum": function (value) {
-      if (value >= 18) {
+      if (value >= 18 && this.actualDealerDeck.length > 2) {
         this.$store.dispatch("changeGameMode", "stopGame");
       }
     },

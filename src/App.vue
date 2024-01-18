@@ -11,6 +11,9 @@ import PlayerSide from "./components/Layout/PlayerSide.vue";
 import ActionRow from "./components/Layout/ActionRow.vue";
 import { mapGetters } from "vuex";
 import mixins from "./mixins";
+import { deck, shuffle } from "@/utils/cardLogic";
+
+const shuffledDeck = shuffle(deck());
 
 export default {
   name: "App",
@@ -24,15 +27,15 @@ export default {
     ...mapGetters(["actualDeck"]),
   },
   mounted() {
-    this.initNewGame();
+    console.log(shuffledDeck);
+    this.initNewGame(shuffledDeck);
   },
 };
 </script>
 <style lang="sass">
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed')
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@400;500;700&display=swap')
 
 html, body
-  font-family: Roboto, sans-serif
 
 .general-box-shadow
   box-shadow: 0 4px 0 0 rgba(0,0,0,.5)
@@ -43,7 +46,7 @@ html, body
   height: 100vh
   align-items: center
   justify-content: center
-  font-family: Roboto, Helvetica, Arial, sans-serif
+  font-family: Dosis, Helvetica, Arial, sans-serif
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   text-align: center

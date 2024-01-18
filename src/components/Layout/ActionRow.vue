@@ -16,6 +16,9 @@ import Stand from "../Buttons/Stand.vue";
 import NewGame from "../Buttons/NewGame.vue";
 import { mapGetters } from "vuex";
 import mixins from "@/mixins";
+import { deck, shuffle } from "@/utils/cardLogic";
+
+const shuffledDeck = shuffle(deck());
 
 export default {
   name: "ActionRow",
@@ -48,7 +51,7 @@ export default {
       this.$store.dispatch("changeGameMode", "dealer");
     },
     handleNewGame() {
-      this.initNewGame();
+      this.initNewGame(shuffledDeck);
     },
   },
 };

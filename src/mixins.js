@@ -1,12 +1,12 @@
 export default {
   methods: {
-    initNewGame() {
+    initNewGame(shuffledDeck) {
       this.$store.dispatch("changeGameMode", "player");
       this.$store.dispatch("emptyDealerDeck");
       this.$store.dispatch("setDealerDeckSum", 0);
       this.$store.dispatch("emptyPlayerDeck");
       this.$store.dispatch("setPlayerDeckSum", 0);
-      this.$store.dispatch("createDeck");
+      this.$store.dispatch("createDeck", shuffledDeck);
 
       setTimeout(() => {
         this.$store.dispatch("pullCardToDealer");

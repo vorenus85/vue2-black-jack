@@ -86,7 +86,7 @@ export default {
   },
 };
 </script>
-<style lang="css">
+<style lang="scss">
 .back {
   background: white;
   background-image: linear-gradient(
@@ -106,6 +106,8 @@ export default {
   line-height: 1
   font-size: 3rem
   text-align: left
+.card-value
+  font-weight: 500
 .card-symbol
   font-size: 4rem
 .front,
