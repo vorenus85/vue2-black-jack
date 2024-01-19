@@ -1,4 +1,5 @@
 import { mount } from "@vue/test-utils";
+
 import mixins from "@/mixins";
 
 describe("mixins", () => {
@@ -47,5 +48,89 @@ describe("mixins", () => {
 
       expect(actualResult).toBe(value);
     });
+  });
+
+  it("should initialize a new game", async () => {
+    const wrapper = mount({
+      template: "<div></div>",
+      mixins: [mixins],
+    });
+
+    const mockedShuffledDeck = ["H10", "C10", "D10", "S10"];
+
+    // Mock $store and other necessary dependencies
+    wrapper.vm.$store = {
+      dispatch: jest.fn(),
+    };
+
+    const mockedPullCardToDealer = jest.fn();
+    mockedPullCardToDealer.mockReturnValue("pullCardToDealer");
+    const mockedPullCardToPlayer = jest.fn();
+    mockedPullCardToPlayer.mockReturnValue("pullCardToPlayer");
+
+    // Mock setTimeout
+    jest.useFakeTimers();
+
+    let setTimeoutSpy = jest.spyOn(window, "setTimeout");
+
+    // Call the method you want to test
+    wrapper.vm.initNewGame(mockedShuffledDeck);
+
+    // Advance timers to simulate asynchronous code
+    jest.runAllTimers();
+
+    // Assertions for $store.dispatch calls
+    expect(wrapper.vm.$store.dispatch).toHaveBeenCalledWith(
+      "changeGameMode",
+      "player"
+    );
+    expect(wrapper.vm.$store.dispatch).toHaveBeenCalledWith("emptyDealerDeck");
+    expect(wrapper.vm.$store.dispatch).toHaveBeenCalledWith(
+      "setDealerDeckSum",
+      0
+    );
+    expect(wrapper.vm.$store.dispatch).toHaveBeenCalledWith("emptyPlayerDeck");
+    expect(wrapper.vm.$store.dispatch).toHaveBeenCalledWith(
+      "setPlayerDeckSum",
+      0
+    );
+    expect(wrapper.vm.$store.dispatch).toHaveBeenCalledWith(
+      "createDeck",
+      mockedShuffledDeck
+    );
+
+    expect(setTimeoutSpy).toHaveBeenCalledTimes(4);
+
+    /*
+    // Assertions for setTimeout calls
+    expect(setTimeout).toHaveBeenNthCalledWith(
+      1,
+      expect(wrapper.vm.$store.dispatch).toHaveBeenCalledWith(
+        "pullCardToDealer"
+      ),
+      125
+    );
+    expect(setTimeout).toHaveBeenNthCalledWith(
+      2,
+      expect(wrapper.vm.$store.dispatch).toHaveBeenCalledWith(
+        "pullCardToPlayer"
+      ),
+      250
+    );
+    expect(setTimeout).toHaveBeenNthCalledWith(
+      3,
+      expect(wrapper.vm.$store.dispatch).toHaveBeenCalledWith(
+        "pullCardToDealer"
+      ),
+      375
+    );
+    expect(setTimeout).toHaveBeenNthCalledWith(
+      4,
+      expect(wrapper.vm.$store.dispatch).toHaveBeenCalledWith(
+        "pullCardToPlayer"
+      ),
+      500
+    );
+    */
   });
 });
