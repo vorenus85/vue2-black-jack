@@ -35,9 +35,10 @@ export default {
     "$store.state.gameMode": function (value) {
       if (value === "dealer") {
         if (
+          this.actualPlayerDeckSum === 21 ||
           this.actualDealerDeckSum === 21 ||
-          this.actualDealerDeckSum >= 18 ||
-          this.actualDealerDeckSum > this.actualPlayerDeckSum
+          (this.actualPlayerDeckSum > 21 &&
+            this.actualDealerDeckSum < this.actualPlayerDeckSum)
         ) {
           this.$store.dispatch("changeGameMode", "stopGame");
           return;
@@ -49,7 +50,10 @@ export default {
       }
     },
     "$store.state.dealerDeckSum": function (value) {
-      if (value >= 18 && this.actualDealerDeck.length > 2) {
+      if (
+        (value >= 18 && this.actualDealerDeck.length > 2) ||
+        this.actualPlayerDeckSum > 21
+      ) {
         this.$store.dispatch("changeGameMode", "stopGame");
       }
     },

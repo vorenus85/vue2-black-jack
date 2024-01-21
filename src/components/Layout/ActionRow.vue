@@ -1,8 +1,8 @@
 <template lang="pug">
 section.action-row
   .row.align-items-center.justify-content-center()
-    Double.col-auto.mx-1(ref="double-btn" @double="handleDouble" :disabled="actionsDisabled" :btnType="'btn-danger'")
-    Stand.col-auto.mx-1(ref="stand-btn" @stand="handleStand" :disabled="actionsDisabled" :btnType="'btn-secondary'")
+    // Double.col-auto.mx-1(ref="double-btn" @double="handleDouble" :disabled="actionsDisabled" :btnType="'btn-danger'")
+    Stand.col-auto.mx-1(ref="stand-btn" @stand="handleStand" :disabled="actionsDisabled" :btnType="'btn-danger'")
     Hit.col-auto.mx-1(ref="hit-btn" @hit="handleHit" :disabled="actionsDisabled" :btnType="'btn-primary'")
 </template>
 <script>
