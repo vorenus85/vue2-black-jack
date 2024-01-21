@@ -16,7 +16,11 @@ export default {
   mixins: [mixins],
   components: { Card, DeckValue },
   computed: {
-    ...mapGetters(["actualDealerDeck", "actualGameMode"]),
+    ...mapGetters([
+      "actualDealerDeck",
+      "actualGameMode",
+      "actualDPlayerDeckSum",
+    ]),
     isFirstCardDowned() {
       return this.actualDealerDeck.length === 2;
     },
@@ -30,7 +34,11 @@ export default {
     },
     "$store.state.gameMode": function (value) {
       if (value === "dealer") {
-        if (this.actualDealerDeckSum >= 18) {
+        if (
+          this.actualDealerDeckSum === 21 ||
+          this.actualDealerDeckSum >= 18 ||
+          this.actualDealerDeckSum > this.actualPlayerDeckSum
+        ) {
           this.$store.dispatch("changeGameMode", "stopGame");
           return;
         }
