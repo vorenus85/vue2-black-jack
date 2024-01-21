@@ -38,4 +38,5 @@ export default {
 <style lang="sass">
 .player-side
   position: relative
+  transform: scale(1.1)
 </style>

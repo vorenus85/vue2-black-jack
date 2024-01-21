@@ -1,6 +1,5 @@
 const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
-  runtimeCompiler: true,
   transpileDependencies: true,
   publicPath: process.env.NODE_ENV === "production" ? "/vue2-black-jack/" : "/",
   pages: {

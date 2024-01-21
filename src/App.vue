@@ -3,12 +3,14 @@ main.game-area
   DealerSide
   PlayerSide
   ActionRow
+  EndGame(:dealerPoints="actualDealerDeckSum" :playerPoints="actualPlayerDeckSum" v-if="actualGameMode==='stopGame'")
 </template>
 
 <script>
-import DealerSide from "./components/Layout/DealerSide.vue";
-import PlayerSide from "./components/Layout/PlayerSide.vue";
-import ActionRow from "./components/Layout/ActionRow.vue";
+import DealerSide from "@/components/Layout/DealerSide.vue";
+import PlayerSide from "@/components/Layout/PlayerSide.vue";
+import ActionRow from "@/components/Layout/ActionRow.vue";
+import EndGame from "@/components/EndGame.vue";
 import { mapGetters } from "vuex";
 import mixins from "./mixins";
 import { deck, shuffle } from "@/utils/cardLogic";
@@ -22,9 +24,15 @@ export default {
     ActionRow,
     PlayerSide,
     DealerSide,
+    EndGame,
   },
   computed: {
-    ...mapGetters(["actualDeck"]),
+    ...mapGetters([
+      "actualDeck",
+      "actualDealerDeckSum",
+      "actualPlayerDeckSum",
+      "actualGameMode",
+    ]),
   },
   mounted() {
     console.log(shuffledDeck);

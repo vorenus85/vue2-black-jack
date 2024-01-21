@@ -61,4 +61,5 @@ export default {
 <style lang="sass">
 .dealer-side
   position: relative
+  transform: scale(0.9)
 </style>

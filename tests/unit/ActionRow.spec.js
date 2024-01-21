@@ -31,11 +31,10 @@ describe("ActionRow component", () => {
   });
 
   test.each`
-    btn          | btnRef
-    ${"Double"}  | ${"double-btn"}
-    ${"Stand"}   | ${"stand-btn"}
-    ${"Hit"}     | ${"hit-btn"}
-    ${"NewGame"} | ${"new-game-btn"}
+    btn         | btnRef
+    ${"Double"} | ${"double-btn"}
+    ${"Stand"}  | ${"stand-btn"}
+    ${"Hit"}    | ${"hit-btn"}
   `("should render $btn button with $btnRef", ({ btnRef }) => {
     const btn = wrapper.findComponent({ ref: btnRef });
     expect(btn.exists()).toBe(true);
